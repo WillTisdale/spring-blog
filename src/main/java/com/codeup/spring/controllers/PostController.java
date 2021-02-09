@@ -11,22 +11,26 @@ public class PostController {
 
     @RequestMapping(path = "/posts", method = RequestMethod.GET)
     @ResponseBody
-    public void all(){
+    public String all(){
+        return "posts index page";
     }
 
     @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public void post(long id){
+    public String post(long id){
+        return "view an individual post";
     }
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
     @ResponseBody
-    public void createForm(){
+    public String createForm(){
+        return "view the form for creating a post";
     }
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.POST)
     @ResponseBody
-    public void createPost(){
+    public String createPost(){
+        return "create a new post";
     }
 
 }
