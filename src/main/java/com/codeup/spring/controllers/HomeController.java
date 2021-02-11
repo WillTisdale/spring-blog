@@ -25,19 +25,19 @@ public class HomeController {
     @GetMapping("/roll-dice/n")
     public String diceRolled(@RequestParam(name = "n") String n, Model model){
         int random = (int) Math.floor(Math.random() * 6) + 1;
-//        if (random == 1){
-//            model.addAttribute("dice", "img/dice1.png");
-//        } else if(random == 2){
-//            model.addAttribute("dice", "img/dice2.png");
-//        } else if(random == 3){
-//            model.addAttribute("dice", "img/dice3.png");
-//        } else if(random == 4){
-//            model.addAttribute("dice", "img/dice4.png");
-//        } else if(random == 5){
-//            model.addAttribute("dice", "img/dice5.png");
-//        } else if(random == 6){
-//            model.addAttribute("dice", "img/dice6.png");
-//        }
+        if (random == 1){
+            model.addAttribute("dice", "/img/dice1.png");
+        } else if(random == 2){
+            model.addAttribute("dice", "/img/dice2.png");
+        } else if(random == 3){
+            model.addAttribute("dice", "/img/dice3.png");
+        } else if(random == 4){
+            model.addAttribute("dice", "/img/dice4.png");
+        } else if(random == 5){
+            model.addAttribute("dice", "/img/dice5.png");
+        } else if(random == 6){
+            model.addAttribute("dice", "/img/dice6.png");
+        }
         boolean answer = random == Integer.parseInt(n);
         if(answer){
             model.addAttribute("answer", "You were RIGHT!!!");
