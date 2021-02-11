@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/partials/partials.html :: header"></div>
+<body>
+<div th:replace="/partials/partials.html :: navbar"></div>
+
+    <main>
+        <div class="container">
+            <h1><span th:text="${cohort}">Enter the name of your Cohort</span></h1>
+
+
+
+            <form action="/join" method="post">
+                <input type="text" name="cohort" id="cohort-ip" class="field" />
+                <button>Join now</button>
+            </form>
+        </div>
+    </main>
+
+<div th:replace="/partials/partials.html :: footer"></div>
+<div th:replace="/partials/partials.html :: script"></div>
+</body>
+</html>

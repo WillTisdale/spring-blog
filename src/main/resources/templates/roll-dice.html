@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:replace="/partials/partials.html :: header"></div>
+</div>
+<body>
+<div th:replace="/partials/partials.html :: navbar"></div>
+<main style="display: flex; flex-direction: column; align-items: center">
+    <h5>Guess which number a rolled dice will land on!</h5>
+
+    <div style="display: flex;">
+        <form action="/roll-dice/n" method="get">
+            <input type="hidden" name="n" value="1" />
+            <button class="waves-effect waves-light btn">1</button>
+        </form>
+        <form action="/roll-dice/n" method="get">
+            <input type="hidden" name="n" value="2" />
+            <button class="waves-effect waves-light btn">2</button>
+        </form>
+        <form action="/roll-dice/n" method="get">
+            <input type="hidden" name="n" value="3" />
+            <button class="waves-effect waves-light btn">3</button>
+        </form>
+        <form action="/roll-dice/n" method="get">
+            <input type="hidden" name="n" value="4" />
+            <button class="waves-effect waves-light btn">4</button>
+        </form>
+        <form action="/roll-dice/n" method="get">
+            <input type="hidden" name="n" value="5" />
+            <button class="waves-effect waves-light btn">5</button>
+        </form>
+        <form action="/roll-dice/n" method="get">
+            <input type="hidden" name="n" value="6" />
+            <button class="waves-effect waves-light btn">6</button>
+        </form>
+    </div>
+
+    <hr>
+
+    <h5 th:text="${answer}"></h5>
+    <h5 th:text="${random}"></h5>
+    <h5 th:text="${guess}"></h5>
+</main>
+
+<div th:replace="/partials/partials.html :: footer"></div>
+<div th:replace="/partials/partials.html :: script"></div>
+</body>
+</html>
