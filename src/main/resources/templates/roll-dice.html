@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:replace="/partials/partials.html :: header"></div>
+<div th:replace="/partials/partials.html :: head"></div>
 </div>
 <body>
-<div th:replace="/partials/partials.html :: navbar"></div>
+<div th:replace="/partials/partials.html :: header"></div>
 <main style="display: flex; flex-direction: column; align-items: center">
-    <h5>Guess which number a rolled dice will land on!</h5>
+    <h5>guess which number a rolled dice will land on!</h5>
 
     <div style="display: flex;">
         <form action="/roll-dice/n" method="get">

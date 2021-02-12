@@ -12,13 +12,13 @@ public class HomeController {
 
     @GetMapping("/")
     public String message(Model model){
-        model.addAttribute("title", "Home");
+        model.addAttribute("title", "home");
         return "home";
     }
 
     @GetMapping("/roll-dice")
     public String rollDice(Model model){
-        model.addAttribute("title", "Roll-dice");
+        model.addAttribute("title", "roll-dice");
         return "roll-dice";
     }
 
@@ -40,13 +40,13 @@ public class HomeController {
         }
         boolean answer = random == Integer.parseInt(n);
         if(answer){
-            model.addAttribute("answer", "You were RIGHT!!!");
+            model.addAttribute("answer", "you were RIGHT!!!");
         } else {
-            model.addAttribute("answer", "You were WRONG...");
+            model.addAttribute("answer", "you were WRONG...");
         }
-        model.addAttribute("title", "Roll-dice");
-        model.addAttribute("random", "The dice landed on " + random);
-        model.addAttribute("guess", "You guessed the dice would land on " + n);
+        model.addAttribute("title", "roll-dice");
+        model.addAttribute("random", "the dice landed on " + random);
+        model.addAttribute("guess", "you guessed the dice would land on " + n);
         return "roll-dice";
     }
 }

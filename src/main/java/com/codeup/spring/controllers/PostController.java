@@ -22,7 +22,7 @@ public class PostController {
     public String all(Model model){
         List<Post> posts = postsDao.findAll();
         model.addAttribute("posts", posts);
-        model.addAttribute("title", "All Posts");
+        model.addAttribute("title", "all posts");
         return "posts/index";
     }
 
@@ -36,7 +36,7 @@ public class PostController {
 
     @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
     public String createForm(Model model){
-        model.addAttribute("title", "Create Post");
+        model.addAttribute("title", "create post");
         return "posts/create";
     }
 
@@ -50,8 +50,7 @@ public class PostController {
 
     @GetMapping(path = "/posts/delete/{id}")
     public String delete(Model model, @PathVariable long id){
-        Post post = postsDao.getOne(id);
-        postsDao.delete(post);
+        postsDao.deleteById(id);
         return all(model);
     }
 
@@ -59,7 +58,7 @@ public class PostController {
     private String editForm(Model model, @PathVariable long id){
         Post post = postsDao.getOne(id);
         model.addAttribute("post", post);
-        model.addAttribute("title", "Edit Post");
+        model.addAttribute("title", "edit post");
         return "posts/edit";
     }
 
@@ -67,6 +66,6 @@ public class PostController {
     private String editPost(Model model, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("id") long id){
         Post post = new Post(id, title, body);
         postsDao.save(post);
-        return all(model);
+        return post(model, id);
     }
 }
