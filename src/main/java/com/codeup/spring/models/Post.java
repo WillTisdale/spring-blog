@@ -2,10 +2,20 @@ package com.codeup.spring.models;
 
 import org.springframework.stereotype.Controller;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "posts")
 public class Post {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
+    @Column(nullable = false)
     private String title;
+
+    @Column(nullable = false, length = 1000)
     private String body;
 
     public Post(){};
