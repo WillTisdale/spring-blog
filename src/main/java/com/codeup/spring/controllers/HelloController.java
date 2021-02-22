@@ -10,7 +10,6 @@ public class HelloController {
     @GetMapping("/hello")
     public  String hello(Model model){
         model.addAttribute("title", "Hello");
-        model.addAttribute("name", "You");
         return "hello";
     }
 
@@ -36,7 +35,7 @@ public class HelloController {
     @PostMapping("/join")
     public String joinCohort(@RequestParam(name = "cohort") String cohort, Model model) {
         model.addAttribute("title", "Join");
-        model.addAttribute("cohort", "Welcome to " + cohort + "!");
+        model.addAttribute("cohort", "welcome to " + cohort.toLowerCase() + "!");
         return "join";
     }
 }

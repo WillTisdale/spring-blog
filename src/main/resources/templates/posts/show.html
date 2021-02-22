@@ -16,6 +16,9 @@
                     <div class="card-content white-text">
                       <span class="card-title" th:text="${post.title}"></span>
                       <p th:text="${post.body}"></p>
+                        <br>
+                        <hr>
+                        <p th:text="${post.user.email}"></p>
                     </div>
                     <div class="card-action">
                       <a href="/posts">View All</a>
