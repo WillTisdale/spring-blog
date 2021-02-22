@@ -50,6 +50,34 @@
         </div>
     </div>
 
+    <ul th:fragment="pagination" class="pagination center">
+        <li th:class="${page.isFirst()}? 'disabled' : ''" class="disabled">
+            <a th:if='${not page.isFirst()}' th:href="'?page=0'">
+                <i class="material-icons">first_page</i>
+            </a>
+        </li>
+        <li th:class="${page.hasPrevious()}? '' : 'disabled'" class="active">
+            <a th:if='${page.hasPrevious()}' th:href="'?page=' + ${page.getNumber() - 1}" title='Go to previous page'>
+                <i class="material-icons">chevron_left</i>
+            </a>
+        </li>
+        <li th:each="i : ${#numbers.sequence(1, page.getTotalPages())}" class="waves-effect">
+            <a th:if='${not ((i - 1) == param.page)}' th:href="'?page=' + ${(i -1)}">
+                <span th:style="${i - 1 == page.getNumber()}? 'text-decoration: overline;font-weight: bold ' : ''" th:text='${i}'></span>
+            </a>
+        </li>
+        <li th:class="${page.hasNext()} ? '' : 'disabled'" class="waves-effect">
+            <a th:if='${page.hasNext()}' th:href="'?page=' + ${page.getNumber() + 1}" title='Go to next page'>
+                <i class="material-icons">chevron_right</i>
+            </a>
+        </li>
+        <li th:class="${page.isLast()}? 'disabled' : ''" class="waves-effect">
+            <a th:if='${not page.isLast()}' th:href="'?page=' + ${page.getTotalPages() - 1}">
+                <i class="material-icons">last_page</i>
+            </a>
+        </li>
+    </ul>
+
     <footer class="page-footer light-blue lighten-3" th:fragment="footer">
 <!--          <div class="container">-->
 <!--            <div class="row">-->
