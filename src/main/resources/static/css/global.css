@@ -12,3 +12,11 @@ main {
     border: 5px solid #607d8b;
     border-radius: 50px;
 }
+.pagination {
+    color: #607d8b;
+}
+.iris {
+    background-image: url("../img/spring-meadow.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}

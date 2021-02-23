@@ -9,11 +9,24 @@
             <h1>this is the home page</h1>
         </div>
         <div class="container">
-            <img class="responsive-img main-image" th:src="@{/img/spring-meadow.jpg}">
+            <img class="responsive-img main-image" th:src="@{/img/spring-sky.jpg}">
         </div>
+
+        <img class="responsive-img circle" th:src="@{/img/me.png}">
+        <div class="card-panel grey lighten-5 z-depth-1">
+          <div class="row valign-wrapper">
+            <div class="col s2">
+               <!-- notice the "circle" class -->
+            </div>
+            <div class="col s10">
+              <span class="black-text">
+                Hello! My name is Will. I created this site for people to create accounts and make posts. Enjoy!
+              </span>
+            </div>
+          </div>
+        </div>
+
     </main>
-
-
 
     <div th:replace="/partials/partials.html :: footer"></div>
     <div th:replace="/partials/partials.html :: script"></div>

@@ -11,16 +11,16 @@
 
         <div class="container">
             <div class="row">
-                <form class="col s12" action="/posts/create" method="post">
+                <form class="col s12" action="/posts/create" method="post" th:object="${post}">
                     <div class="row">
                         <div class="input-field col s12">
-                          <input id="title" type="text" th:name="title">
+                          <input id="title" type="text" th:field="${post.title}">
                           <label for="title">Title</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                          <textarea id="body" class="materialize-textarea" th:name="body"></textarea>
+                          <textarea id="body" class="materialize-textarea" th:field="${post.body}"></textarea>
                           <label for="body">Body</label>
                         </div>
                     </div>

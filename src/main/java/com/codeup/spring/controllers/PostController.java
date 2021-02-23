@@ -29,14 +29,14 @@ public class PostController {
         this.usersDao = usersDao;
     }
 
-    @RequestMapping(path = "/posts", method = RequestMethod.GET)
+    @GetMapping("/posts")
     public String all(Model model, @PageableDefault(value=4) Pageable pageable){
         model.addAttribute("page", postsDao.findAll(pageable));
         model.addAttribute("title", "all posts");
         return "posts/index";
     }
 
-    @RequestMapping(path = "/posts/{id}", method = RequestMethod.GET)
+    @GetMapping("/posts/{id}")
     public String post(Model model, @PathVariable long id){
         Post post = postsDao.getOne(id);
         model.addAttribute("post", post);
@@ -44,25 +44,24 @@ public class PostController {
         return "posts/show";
     }
 
-    @RequestMapping(path = "/posts/create", method = RequestMethod.GET)
+    @GetMapping("/posts/create")
     public String createForm(Model model){
+        model.addAttribute("post", new Post());
         model.addAttribute("title", "create post");
         return "posts/create";
     }
 
-    @PostMapping(path = "/posts/create")
-    public String createPost(Model model, @RequestParam("title") String title, @RequestParam("body") String body){
-        String search;
-        Post post = new Post(title, body, usersDao.getOne(1L));
+    @PostMapping("/posts/create")
+    public String createPost(@ModelAttribute Post post){
+        post.setUser(usersDao.getOne(1L));
         postsDao.save(post);
-        String id = String.valueOf(post.getId());
-        return "posts/index";
+        return "redirect:/posts";
     }
 
     @GetMapping(path = "/posts/delete/{id}")
-    public String delete(Model model, @PathVariable long id){
+    public String delete(@PathVariable long id){
         postsDao.deleteById(id);
-        return "posts/index";
+        return "redirect:/posts";
     }
 
     @GetMapping(path = "/posts/edit/{id}")
@@ -74,9 +73,9 @@ public class PostController {
     }
 
     @PostMapping(path = "/posts/edit/{id}")
-    private String editPost(Model model, @RequestParam("title") String title, @RequestParam("body") String body, @RequestParam("id") long id){
-        Post post = new Post(id, title, body, usersDao.getOne(1L));
+    private String editPost(@ModelAttribute Post post){
+        post.setUser(usersDao.getOne(1L));
         postsDao.save(post);
-        return post(model, id);
+        return "redirect:/posts/" + post.getId();
     }
 }
