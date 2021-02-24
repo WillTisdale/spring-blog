@@ -12,11 +12,29 @@ main {
     border: 5px solid #607d8b;
     border-radius: 50px;
 }
+.my-image {
+    border: 5px solid #607d8b;
+    border-radius: 50px;
+    min-width: 320px;
+    max-width: 410px;
+    width: 100%;
+    height: auto;
+}
 .pagination {
     color: #607d8b;
 }
-.iris {
+.spring-bg {
     background-image: url("../img/spring-meadow.jpg");
     background-repeat: no-repeat;
     background-size: cover;
+}
+blockquote {
+    border-left: 5px solid #607d8b !important;
+    font-size: large;
+}
+.main-quote {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

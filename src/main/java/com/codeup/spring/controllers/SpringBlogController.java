@@ -3,23 +3,21 @@ package com.codeup.spring.controllers;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class HomeController {
+public class SpringBlogController {
 
-    @GetMapping("/")
+    @GetMapping("/spring-blog")
     public String message(Model model){
         model.addAttribute("title", "home");
-        return "home";
+        return "spring-blog/spring-blog";
     }
 
     @GetMapping("/roll-dice")
     public String rollDice(Model model){
         model.addAttribute("title", "roll-dice");
-        return "roll-dice";
+        return "spring-blog/roll-dice";
     }
 
     @GetMapping("/roll-dice/n")
@@ -47,6 +45,6 @@ public class HomeController {
         model.addAttribute("title", "roll-dice");
         model.addAttribute("random", "the dice landed on " + random);
         model.addAttribute("guess", "you guessed the dice would land on " + n);
-        return "roll-dice";
+        return "spring-blog/roll-dice";
     }
 }

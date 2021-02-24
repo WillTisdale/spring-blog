@@ -33,7 +33,7 @@ public class PostController {
     public String all(Model model, @PageableDefault(value=4) Pageable pageable){
         model.addAttribute("page", postsDao.findAll(pageable));
         model.addAttribute("title", "all posts");
-        return "posts/index";
+        return "spring-blog/posts/index";
     }
 
     @GetMapping("/posts/{id}")
@@ -41,14 +41,14 @@ public class PostController {
         Post post = postsDao.getOne(id);
         model.addAttribute("post", post);
         model.addAttribute("title", post.getTitle());
-        return "posts/show";
+        return "spring-blog/posts/show";
     }
 
     @GetMapping("/posts/create")
     public String createForm(Model model){
         model.addAttribute("post", new Post());
         model.addAttribute("title", "create post");
-        return "posts/create";
+        return "spring-blog/posts/create";
     }
 
     @PostMapping("/posts/create")
@@ -69,7 +69,7 @@ public class PostController {
         Post post = postsDao.getOne(id);
         model.addAttribute("post", post);
         model.addAttribute("title", "edit post");
-        return "posts/edit";
+        return "spring-blog/posts/edit";
     }
 
     @PostMapping(path = "/posts/edit/{id}")

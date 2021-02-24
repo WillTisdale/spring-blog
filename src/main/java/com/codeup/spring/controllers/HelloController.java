@@ -10,14 +10,14 @@ public class HelloController {
     @GetMapping("/hello")
     public  String hello(Model model){
         model.addAttribute("title", "Hello");
-        return "hello";
+        return "spring-blog/hello";
     }
 
     @GetMapping("/hello/{name}")
     public String sayHello(@PathVariable String name, Model model) {
         model.addAttribute("title", "Hello");
         model.addAttribute("name", name);
-        return "hello";
+        return "spring-blog/hello";
     }
 
     @RequestMapping(path = "/increment/{number}", method = RequestMethod.GET)
@@ -29,13 +29,13 @@ public class HelloController {
     @GetMapping("/join")
     public String showJoinForm(Model model) {
         model.addAttribute("title", "Join");
-        return "join";
+        return "spring-blog/join";
     }
 
     @PostMapping("/join")
     public String joinCohort(@RequestParam(name = "cohort") String cohort, Model model) {
         model.addAttribute("title", "Join");
         model.addAttribute("cohort", "welcome to " + cohort.toLowerCase() + "!");
-        return "join";
+        return "spring-blog/join";
     }
 }
