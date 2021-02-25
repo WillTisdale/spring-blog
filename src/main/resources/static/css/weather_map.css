@@ -1,34 +1,6 @@
-:root {
-    --font-light: #FFFCF2;
-    --card-light: #CCC5B9;
-    --card-dark: #A99D89;
-    --card-font: #252422;
-    --bg: #403D39;
-    --navbar: #EB5E28;
-}
-.map-container {
-    margin: 15px auto;
-    display: flex;
-    justify-content: center;
-}
-hr {
-    background: var(--navbar);
-    width: 90%;
-}
-.tool {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.tool-bar {
-    height: 2em;
-}
-#fiveDay {
-    display: none;
-}
 #map {
     margin: 1em auto;
-    border: 5px solid #A99D89;
+    border: 5px solid #607d8b;
     border-radius: 10px;
     width: 90%;
     height: 400px;
@@ -37,35 +9,15 @@ hr {
     width: 90%;
     margin: 15px auto;
 }
-.my-navbar {
-    background: var(--navbar);
-    color: var(--font-light);
-}
 body {
-    background: var(--bg);
-    min-width: 320px;
-}
-.top {
-    background: var(--card-dark);
-    color: var(--font-light);
     display: flex;
-    align-items: center;
-    justify-content: center;
+    min-height: 100vh;
+    flex-direction: column;
+    background-color: #e0f7fa;
+    color: #607d8b;
 }
-.my-cards {
-    background: var(--card-light);
-    color: var(--card-font);
-    margin: 15px auto;
-    height: 375px;
-}
-.row {
-    display: flex;
-    justify-content: center;
-}
-@media screen and (min-width: 550px){
-    #fiveDay {
-        display: unset;
-    }
+main {
+    flex: 1 0 auto;
 }
 @media screen and (min-width: 991px){
     .my-cards {

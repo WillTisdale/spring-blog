@@ -94,34 +94,66 @@ $(() => {
             renderCards(data)
         });
     }
-    function renderCards(data){
-        let cardHTML = "";
-        // cardHTML += toolHTML
-        for(var i = 0; i < 5; i++){
-            today = getDate(i)
-            max = Math.trunc(data.daily[i].temp.max);
-            min = Math.trunc(data.daily[i].temp.min);
-            description = data.daily[i].weather[0].description
-            humidity = data.daily[i].humidity
-            wind = Math.trunc(data.daily[i].wind_speed);
-            pressure = data.daily[i].pressure
-            icon = "https://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png"
-            windDirections(data, i)
-            cardHTML += "<div class='col-12 col-sm-6 col-md-4 col-xl-2 outer'><div class='card my-cards'>"
-            cardHTML += "<div class='card-header text-center top'>"
-            cardHTML += today  + "</div>"
-            cardHTML += "<div class='card-body'>"
-            cardHTML += "<p class='text-center'>" + min + "°F / " + max + "°F" + "</p>"
-            cardHTML += "<img src='" + icon + "' class='mx-auto d-block' alt='weather'>"
-            cardHTML += "<hr>"
-            cardHTML += "<p>" + "Description: <strong>" + description + "</strong></p>"
-            cardHTML += "<p>" + "Humidity: <strong>" + humidity + "</strong></p>"
-            cardHTML += "<p>" + "Wind: <strong>" + wind + " " + windDir + "</strong></p>"
-            cardHTML += "<p>" + "Pressure: <strong>" + pressure + "</strong></p>"
-            cardHTML += "</div></div></div>"
+    // function renderCards(data){
+    //     let cardHTML = "";
+    //     // cardHTML += toolHTML
+    //     for(var i = 0; i < 5; i++){
+    //         today = getDate(i)
+    //         max = Math.trunc(data.daily[i].temp.max);
+    //         min = Math.trunc(data.daily[i].temp.min);
+    //         description = data.daily[i].weather[0].description
+    //         humidity = data.daily[i].humidity
+    //         wind = Math.trunc(data.daily[i].wind_speed);
+    //         pressure = data.daily[i].pressure
+    //         icon = "https://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png"
+    //         windDirections(data, i)
+    //         cardHTML += "<div class='col s12'><div class='card my-cards'>"
+    //         cardHTML += "<div class='card-header center-align top'>"
+    //         cardHTML += today  + "</div>"
+    //         cardHTML += "<div class='card-body'>"
+    //         cardHTML += "<p class='center-align'>" + min + "°F / " + max + "°F" + "</p>"
+    //         cardHTML += "<img src='" + icon + "' class='center-align' alt='weather'>"
+    //         cardHTML += "<hr>"
+    //         cardHTML += "<p>" + "Description: <strong>" + description + "</strong></p>"
+    //         cardHTML += "<p>" + "Humidity: <strong>" + humidity + "</strong></p>"
+    //         cardHTML += "<p>" + "Wind: <strong>" + wind + " " + windDir + "</strong></p>"
+    //         cardHTML += "<p>" + "Pressure: <strong>" + pressure + "</strong></p>"
+    //         cardHTML += "</div></div></div>"
+    //     }
+
+        function renderCards(data){
+            var ul = document.getElementById("days");
+            ul.innerHTML = ""
+            for(var i = 0; i < 5; i++) {
+                var li = document.createElement("li")
+                today = getDate(i)
+                max = Math.trunc(data.daily[i].temp.max);
+                min = Math.trunc(data.daily[i].temp.min);
+                description = data.daily[i].weather[0].description
+                humidity = data.daily[i].humidity
+                wind = Math.trunc(data.daily[i].wind_speed);
+                pressure = data.daily[i].pressure
+                icon = "https://openweathermap.org/img/w/" + data.daily[i].weather[0].icon + ".png"
+                windDirections(data, i)
+                li.innerHTML = `
+                      <div class="collapsible-header light-blue white-text valign-wrapper"><img src='` + icon + `'>` + today + `</div>
+                      <div class="collapsible-body light-blue lighten-3 white-text">
+                        <p class='center-align'>Low/High</p>
+                        <p class='center-align'>` + min + `°F / ` + max + `°F` + `</p>
+                        <hr>
+                        <p>Description: <strong>` + description + `</strong></p>
+                        <p>Humidity: <strong>` + humidity + `</strong></p>
+                        <p>Wind: <strong>` + wind + ` ` + windDir + `</strong></p>
+                        <p>Pressure: <strong>` + pressure + `</strong></p>
+                      </div>  
+                    `
+                ul.appendChild(li);
+            }
         }
 
-        $('#card-row').html(cardHTML)
+
+
+        // $('#card-row').html(cardHTML)
         $('#update-marker').click(function(){
             let center = map.getCenter()
             marker.setLngLat(center)
@@ -130,7 +162,7 @@ $(() => {
             updateWeather(lat, lon)
             updateCity(lon, lat)
         })
-    }
+
     function updateCity(lon, lat) {
         $.get("https://api.openweathermap.org/data/2.5/weather", {
             APPID: OPEN_WEATHER_APPID,

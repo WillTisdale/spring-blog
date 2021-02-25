@@ -4,7 +4,7 @@ import com.codeup.spring.models.User;
 import com.codeup.spring.repositories.UserRepository;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("userService")
 public class UserService {
 
     private final UserRepository usersDao;
