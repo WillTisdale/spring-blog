@@ -1,0 +1,3 @@
+const OPEN_WEATHER_APPID = '2ccb6e460d0c45a2be81179889db0ac4'
+const mapboxToken = 'pk.eyJ1Ijoid2lsbHRpc2RhbGUiLCJhIjoiY2toM2pia2FnMDAxYTJycnR5YWlrdW14OSJ9.kAZnWWxq9gyzxR9IuiEjGg'
+const mapbox_api = 'pk.eyJ1Ijoid2lsbHRpc2RhbGUiLCJhIjoiY2tobWYzN3hjMDBxbDJxcWt5NW9xNjBzMSJ9.1SBGfCcxJqsZO6Olx6--2g'

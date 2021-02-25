@@ -4,6 +4,8 @@ import com.codeup.spring.models.Post;
 import com.codeup.spring.models.User;
 import com.codeup.spring.repositories.PostRepository;
 import com.codeup.spring.repositories.UserRepository;
+import com.codeup.spring.services.EmailService;
+import com.codeup.spring.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -22,11 +24,16 @@ public class PostController {
 
     private final PostRepository postsDao;
     private final UserRepository usersDao;
+    private final EmailService emailService;
+    private final UserService userService;
+
 
     @Autowired
-    public PostController(PostRepository postsDao, UserRepository usersDao){
+    public PostController(PostRepository postsDao, UserRepository usersDao, EmailService emailService, UserService userService){
         this.postsDao = postsDao;
         this.usersDao = usersDao;
+        this.emailService = emailService;
+        this.userService = userService;
     }
 
     @GetMapping("/posts")
@@ -53,8 +60,14 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String createPost(@ModelAttribute Post post){
-        post.setUser(usersDao.getOne(1L));
-        postsDao.save(post);
+        User user = userService.loggedInUser();
+        post.setUser(user);
+        Post savedPost = postsDao.save(post);
+        String subject = "New Post Created Successfully!";
+        String body = "Dear " + savedPost.getUser().getUsername() + "," +
+                "\n\nThank you for creating a post. Your post ID is: " +
+                savedPost.getId() + ".";
+        emailService.prepareAndSend(savedPost, subject, body);
         return "redirect:/posts";
     }
 

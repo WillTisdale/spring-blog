@@ -1,23 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <div th:fragment="head">
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.1.1/mapbox-gl.css' rel='stylesheet' />
+
+
+
     <link rel="stylesheet" th:href="@{/css/global.css}">
     <title th:text="${title}"></title>
 </div>
 <body>
 
-<div th:fragment="spring-blog-header">
+<header th:fragment="header">
     <div class="navbar-fixed">
         <nav class="light-blue">
             <div class="nav-wrapper">
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
-              <a onclick="M.toast({html: 'welcome to spring blog!', classes: 'rounded white blue-grey-text hoverable'})" href="#" class="brand-logo">Spring Blog</a>
+              <a onclick="M.toast({html: 'welcome to weather map!', classes: 'rounded white blue-grey-text hoverable'})" href="#" class="brand-logo">Weather Map</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                  <li><a href="/posts">view posts</a></li>
-                  <li><a href="/posts/create">create post</a></li>
                   <a class='dropdown-trigger btn pulse' href='#' data-target='dropdown1'>more!</a>
                   <ul id='dropdown1' class='dropdown-content'>
                     <li><a href="/"><i class="material-icons">book</i>portfolio</a></li>
@@ -30,13 +35,13 @@
     </div>
 
     <ul class="sidenav right cyan lighten-5" id="mobile-demo">
-              <li><a class="blue-grey-text" href="/posts"><i class="material-icons">visibility</i>view posts</a></li>
-              <li><a class="blue-grey-text" href="/posts/create"><i class="material-icons">mode_edit</i>create post</a></li>
-              <li><a class="blue-grey-text" href="/"><i class="material-icons">home</i>portfolio</a></li>
-              <li><a href="/weather-map"><i class="material-icons">cloud</i>weather</a></li>
-              <li><a class="blue-grey-text" href="/roll-dice"><i class="material-icons">view_module</i>roll dice</a></li>
-          </ul>
-</div>
+      <li><a class="blue-grey-text" href="/posts"><i class="material-icons">visibility</i>view posts</a></li>
+      <li><a class="blue-grey-text" href="/posts/create"><i class="material-icons">mode_edit</i>create post</a></li>
+      <li><a class="blue-grey-text" href="/"><i class="material-icons">home</i>portfolio</a></li>
+      <li><a href="/weather-map"><i class="material-icons">cloud</i>weather</a></li>
+      <li><a class="blue-grey-text" href="/roll-dice"><i class="material-icons">view_module</i>roll dice</a></li>
+  </ul>
+</header>
 
 <div th:fragment="portfolio-header">
     <div class="navbar-fixed">
@@ -99,7 +104,7 @@
         </li>
     </ul>
 
-    <div class="page-footer light-blue lighten-3" th:fragment="portfolio-footer">
+    <div class="page-footer light-blue lighten-3" th:fragment="footer">
           <div class="container">
             <div class="row">
               <div class="col l6 s12">
@@ -123,76 +128,23 @@
           </div>
         </div>
 
-        <div class="page-footer light-blue lighten-3" th:fragment="footer">
-          <div class="footer-copyright light-blue">
-                <div class="container valign-wrapper">
-                         © 2021 Will Tisdale Portfolio
-                        <ul class="right hide-on-small-and-down" style="margin-left: auto">
-                          <li class="chip hoverable"><img class="circle" th:src="@{/img/resume.png}"><a class="blue-grey-text" th:href="@{/pdf/resume.pdf}" target="_blank">Resume</a></li>
-                          <li class="chip hoverable"><img class="circle" th:src="@{/img/linkedin.png}"><a class="blue-grey-text" href="https://linkedin.com/in/willtisdale" target="_blank">LinkedIn</a></li>
-                          <li class="chip hoverable"><img class="circle" th:src="@{/img/github.png}"><a class="blue-grey-text" href="https://github.com/willtisdale" target="_blank">GitHub</a></li>
-                        </ul>
-                </div>
-            </div>
-          </div>
-        </div>
 
-    <div class="page-footer light-blue lighten-3" th:fragment="index-footer">
-            <ul class="pagination center">
-                <li th:class="${page.isFirst()}? 'disabled' : ''" class="disabled">
-                    <a th:if='${not page.isFirst()}' th:href="'?page=0'">
-                        <i class="material-icons">first_page</i>
-                    </a>
-                </li>
-                <li th:class="${page.hasPrevious()}? '' : 'disabled'" class="active">
-                    <a th:if='${page.hasPrevious()}' th:href="'?page=' + ${page.getNumber() - 1}" title='Go to previous page'>
-                        <i class="material-icons">chevron_left</i>
-                    </a>
-                </li>
-                <li th:each="i : ${#numbers.sequence(1, page.getTotalPages())}" class="waves-effect">
-                    <a th:if='${not ((i - 1) == param.page)}' th:href="'?page=' + ${(i -1)}">
-                        <span th:style="${i - 1 == page.getNumber()}? 'text-decoration: overline;font-weight: bold ' : ''" th:text='${i}'></span>
-                    </a>
-                </li>
-                <li th:class="${page.hasNext()} ? '' : 'disabled'" class="waves-effect">
-                    <a th:if='${page.hasNext()}' th:href="'?page=' + ${page.getNumber() + 1}" title='Go to next page'>
-                        <i class="material-icons">chevron_right</i>
-                    </a>
-                </li>
-                <li th:class="${page.isLast()}? 'disabled' : ''" class="waves-effect">
-                    <a th:if='${not page.isLast()}' th:href="'?page=' + ${page.getTotalPages() - 1}">
-                        <i class="material-icons">last_page</i>
-                    </a>
-                </li>
-            </ul>
-          <div class="footer-copyright light-blue">
-            <div class="container valign-wrapper">
-                         © 2021 Will Tisdale Portfolio
-                        <ul class="right hide-on-small-and-down" style="margin-left: auto">
-                          <li class="chip hoverable"><img class="circle" th:src="@{/img/resume.png}"><a class="blue-grey-text" th:href="@{/pdf/resume.pdf}" target="_blank">Resume</a></li>
-                          <li class="chip hoverable"><img class="circle" th:src="@{/img/linkedin.png}"><a class="blue-grey-text" href="https://linkedin.com/in/willtisdale" target="_blank">LinkedIn</a></li>
-                          <li class="chip hoverable"><img class="circle" th:src="@{/img/github.png}"><a class="blue-grey-text" href="https://github.com/willtisdale" target="_blank">GitHub</a></li>
-                        </ul>
-                </div>
-          </div>
-        </div>
+
+
 
     <div th:fragment="script" th:remove="tag">
-        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script>
-            $(document).ready(function(){
-                $('.modal').modal();
-                $('.dropdown-trigger').dropdown();
-                $('#submit').click(function(){
-                    $('#editForm').submit();
-                })
-                $('.sidenav').sidenav();
-                $('.parallax').parallax();
-                console.log($('.quote'));
-                $('.quote').width($('img.my-image').css("width"));
-            });
-        </script>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
+        <!--MapBox-->
+        <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js"></script>
+        <link rel="stylesheet" href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css" type="text/css"/>
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/es6-promise@4/dist/es6-promise.auto.min.js"></script>
+
+        <script th:src="@{js/keys.js}"></script>
+        <script th:src="@{/js/weather_map.js}"></script>
+
     </div>
 </body>
 </html>
