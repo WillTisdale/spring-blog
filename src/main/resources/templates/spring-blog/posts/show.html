@@ -20,34 +20,16 @@
                         <hr>
                         <p th:text="${post.user.email}"></p>
                     </div>
-                    <div class="card-action">
-                      <a href="/posts">View All</a>
-                      <a class="activator" th:href="@{/posts/edit/{id}(id=${post.id})}">Edit</a>
-                      <a class="modal-trigger" href="#modal1">Delete</a>
-                    </div>
-<!--                    <div class="card-reveal blue-grey darken-1">-->
-<!--                        <span style="color: #ffab40" class="card-title">Edit Post<i class="material-icons right white-text">close</i></span>-->
-<!--                        <form id="editForm" th:action="@{/posts/edit/{id}(id=${post.id})}" method="post">-->
-<!--                            <div class="card-content white-text">-->
-<!--                              <div class="row">-->
-<!--                                    <div class="input-field col s12">-->
-<!--                                      <input class="white-text" id="title" type="text" th:name="title" th:value="${post.title}">-->
-<!--                                      <label style="color: #ffab40" for="title">Title</label>-->
-<!--                                    </div>-->
-<!--                              </div>-->
-<!--                              <div class="row">-->
-<!--                                    <div class="input-fieldcol s12">-->
-<!--                                      <textarea id="body" class="materialize-textarea white-text" th:name="body" th:text="${post.body}"></textarea>-->
-<!--                                      <label style="color: #ffab40" for="body">Body</label>-->
-<!--                                    </div>-->
-<!--                              </div>-->
-<!--                                <input type="hidden" name="id" th:value="${post.id}">-->
-<!--                            </div>-->
-<!--                            <div class="card-action">-->
-<!--                              <a href="#!" id="submit">Submit</a>-->
-<!--                            </div>-->
-<!--                        </form>-->
-<!--                    </div>-->
+                      <div th:switch="${isUsers}">
+                        <div th:case="true" class="card-action">
+                          <a href="/posts">View All</a>
+                          <a class="activator" th:href="@{/posts/edit/{id}(id=${post.id})}">Edit</a>
+                          <a class="modal-trigger" href="#modal1">Delete</a>
+                        </div>
+                          <div th:case="*" class="card-action">
+                          <a href="/posts">View All</a>
+                        </div>
+                      </div>
                   </div>
                 </div>
             </div>

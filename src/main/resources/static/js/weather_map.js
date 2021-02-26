@@ -123,7 +123,12 @@ $(() => {
 
         function renderCards(data){
             var ul = document.getElementById("days");
-            ul.innerHTML = ""
+            ul.innerHTML = `
+                <li>
+                <div class="collapsible-header light-blue white-text valign-wrapper center-align">
+                     <h5 id="location" class="white-text center-align"></h5>
+                </div>
+                </li>`
             for(var i = 0; i < 5; i++) {
                 var li = document.createElement("li")
                 today = getDate(i)
@@ -175,7 +180,7 @@ $(() => {
             if(data.name === ""){
                 $('#location').html("")
             } else {
-                $('#location').html("Current: " + data.name + "   ~   " + Math.trunc(data.main.temp) + "°F")
+                $('#location').html(data.name + "   ~   " + Math.trunc(data.main.temp) + "°F")
             }
         });
     }

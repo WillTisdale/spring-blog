@@ -1,5 +1,7 @@
 package com.codeup.spring;
 
+import com.codeup.spring.models.User;
+import com.codeup.spring.services.UserService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

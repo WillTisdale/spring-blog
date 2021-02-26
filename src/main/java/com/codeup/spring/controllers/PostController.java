@@ -13,11 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.awt.print.PageFormat;
-import java.awt.print.Printable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
 
 @Controller
 public class PostController {
@@ -46,6 +41,14 @@ public class PostController {
     @GetMapping("/posts/{id}")
     public String post(Model model, @PathVariable long id){
         Post post = postsDao.getOne(id);
+        User user = userService.loggedInUser();
+        boolean isUsers;
+        if(user.getId() == post.getUser().getId()){
+            isUsers = true;
+        } else {
+            isUsers = false;
+        }
+        model.addAttribute("isUsers", isUsers);
         model.addAttribute("post", post);
         model.addAttribute("title", post.getTitle());
         return "spring-blog/posts/show";
@@ -62,13 +65,16 @@ public class PostController {
     public String createPost(@ModelAttribute Post post){
         User user = userService.loggedInUser();
         post.setUser(user);
+
         Post savedPost = postsDao.save(post);
+
         String subject = "New Post Created Successfully!";
         String body = "Dear " + savedPost.getUser().getUsername() + "," +
                 "\n\nThank you for creating a post. Your post ID is: " +
                 savedPost.getId() + ".";
+
         emailService.prepareAndSend(savedPost, subject, body);
-        return "redirect:/posts";
+        return "redirect:/posts/" + savedPost.getId();
     }
 
     @GetMapping(path = "/posts/delete/{id}")
@@ -87,7 +93,8 @@ public class PostController {
 
     @PostMapping(path = "/posts/edit/{id}")
     private String editPost(@ModelAttribute Post post){
-        post.setUser(usersDao.getOne(1L));
+        User user = userService.loggedInUser();
+        post.setUser(user);
         postsDao.save(post);
         return "redirect:/posts/" + post.getId();
     }

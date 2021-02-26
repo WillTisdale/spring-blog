@@ -2,6 +2,7 @@ package com.codeup.spring.services;
 
 import com.codeup.spring.models.User;
 import com.codeup.spring.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 @Service("userService")
@@ -14,7 +15,7 @@ public class UserService {
     }
 
     public User loggedInUser(){
-        return usersDao.findAll().get(0);
+        return (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     }
 
 }

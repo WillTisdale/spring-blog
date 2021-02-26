@@ -1,11 +1,27 @@
 package com.codeup.spring.controllers;
 
+import com.codeup.spring.SecurityConfiguration;
+import com.codeup.spring.models.User;
+import com.codeup.spring.repositories.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class PortfolioController {
+
+    private final UserRepository usersDao;
+    private final PasswordEncoder encoder;
+
+    public PortfolioController(UserRepository usersDao, PasswordEncoder encoder) {
+        this.usersDao = usersDao;
+        this.encoder = encoder;
+    }
 
     @GetMapping("/")
     public String portfolioHome(Model model){
@@ -25,4 +41,30 @@ public class PortfolioController {
                 "based on the users input for location.");
         return "weather-map/weather-map";
     }
+
+    @GetMapping("/login")
+    public String showLogInForm(){
+        return "login";
+    }
+
+    @GetMapping("/sign-up")
+    public String showSignUpForm(Model model){
+        model.addAttribute("user", new User());
+        return "sign-up";
+    }
+
+    @PostMapping("/sign-up")
+    public String createUser(@ModelAttribute User user){
+        String password = user.getPassword();
+        String hash = encoder.encode(password);
+        user.setPassword(hash);
+        usersDao.save(user);
+        return "redirect:/login";
+    }
+
+    @GetMapping("/logout")
+    public String logout(){
+        return "redirect:/";
+    }
+
 }

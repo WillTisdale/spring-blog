@@ -3,7 +3,10 @@
     border: 5px solid #607d8b;
     border-radius: 10px;
     width: 90%;
-    height: 400px;
+    height: 471px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
 }
 #card-container {
     width: 90%;
