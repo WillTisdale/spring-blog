@@ -47,6 +47,11 @@ main {
         padding: 15px;
     }
 }
+input.mapboxgl-ctrl-geocoder--input {
+    padding-left: 30px !important;
+    overflow: hidden;
+    max-width: 200px;
+}
 
 
 

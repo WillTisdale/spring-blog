@@ -122,15 +122,11 @@ $(() => {
     //     }
 
         function renderCards(data){
+            $("li").remove(".added")
             var ul = document.getElementById("days");
-            ul.innerHTML = `
-                <li>
-                <div class="collapsible-header light-blue white-text valign-wrapper center-align">
-                     <h5 id="location" class="white-text center-align"></h5>
-                </div>
-                </li>`
             for(var i = 0; i < 5; i++) {
                 var li = document.createElement("li")
+                li.setAttribute("class", "added")
                 today = getDate(i)
                 max = Math.trunc(data.daily[i].temp.max);
                 min = Math.trunc(data.daily[i].temp.min);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
 <head th:fragment="head">
     <!--Meta Tags-->
     <meta charset="UTF-8">
@@ -35,12 +35,13 @@
               <ul id='dropdown1' class='dropdown-content'>
                 <li><a href="/spring-blog"><i class="material-icons">wb_sunny</i>blog</a></li>
                 <li><a href="/weather-map"><i class="material-icons">cloud</i>weather</a></li>
-                <li><a href="/roll-dice"><i class="material-icons">view_module</i>roll dice</a></li>
-                  <li>
-                    <form th:action="@{/logout}" th:method="post">
-                        <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-                    </form>
-                  </li>
+                <li><a href="/roll-dice"><i class="material-icons">view_module</i>dice</a></li>
+                 <li sec:authorize="isAuthenticated()">
+                     <a id="logout"><i class="material-icons">clear</i>logout</a>
+                </li>
+                <li sec:authorize="isAnonymous()">
+                    <a id="login" th:href="@{/login}"><i class="material-icons">portrait</i>login</a>
+                </li>
               </ul>
           </ul>
         </div>
@@ -48,16 +49,19 @@
 </div>
 
 <ul class="sidenav right cyan lighten-5" id="mobile-demo">
-  <li><a class="blue-grey-text" href="/"><i class="material-icons">book</i>portfolio</a></li>
+  <li><a href="/"><i class="material-icons">home</i>portfolo</a></li>
   <li><a href="/spring-blog"><i class="material-icons">wb_sunny</i>blog</a></li>
   <li><a href="/weather-map"><i class="material-icons">cloud</i>weather</a></li>
-  <li><a class="blue-grey-text" href="/roll-dice"><i class="material-icons">view_module</i>roll dice</a></li>
-    <li>
-        <form th:action="@{/logout}" th:method="post">
-            <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-        </form>
+  <li><a class="blue-grey-text" href="/roll-dice"><i class="material-icons">view_module</i>dice</a></li>
+   <li sec:authorize="isAuthenticated()">
+         <a id="logout"><i class="material-icons">clear</i>logout</a>
+    </li>
+    <li sec:authorize="isAnonymous()">
+        <a id="login" th:href="@{/login}"><i class="material-icons">portrait</i>login</a>
     </li>
 </ul>
+
+    <form id="logoutForm" th:action="@{/logout}" th:method="post"></form>
 </header>
 <body>
 
@@ -109,6 +113,7 @@
             $('.dropdown-trigger').dropdown();
             $('.sidenav').sidenav();
             $('.collapsible').collapsible();
+            $('.tooltipped').tooltip();
         });
         </script>
     </div>
