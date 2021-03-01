@@ -33,7 +33,6 @@ public class PortfolioController {
 
     @GetMapping("/weather-map")
     public String weatherMap(Model model){
-        model.addAttribute("title", "Weather Map");
         model.addAttribute("footerTitle", "About Weather Map");
         model.addAttribute("footerAbout", "Uses HTML, CSS, jQuery, AJAX, and the\n" +
                 "OpenWeatherMap API to dynamically\n" +
