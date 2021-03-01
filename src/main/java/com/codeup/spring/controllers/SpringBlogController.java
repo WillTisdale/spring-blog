@@ -12,7 +12,7 @@ public class SpringBlogController {
     public String message(Model model){
         model.addAttribute("title", "home");
         model.addAttribute("footerTitle", "About Spring Blog");
-        model.addAttribute("footerAbout", "Spring Blog is a Spring Boot and Thymleaf web application. Utilizes Spring Security for functionality regarding users creating accounts, logging in, and logging out. Includes the Spring Boot Mail dependency in order to email users when they have created posts. Other functionality includes viewing all posts as well as editing and deleting user specific posts. ");
+        model.addAttribute("footerAbout", "Spring Blog is a Spring Boot and Thymeleaf web application. Utilizes Spring Security for functionality regarding users creating accounts, logging in, and logging out. Includes the Spring Boot Mail dependency in order to email users when they have created posts. Other functionality includes viewing all posts as well as editing and deleting user specific posts. ");
         return "spring-blog/spring-blog";
     }
 

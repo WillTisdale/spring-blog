@@ -22,7 +22,6 @@ public class PostController {
     private final EmailService emailService;
     private final UserService userService;
 
-
     @Autowired
     public PostController(PostRepository postsDao, UserRepository usersDao, EmailService emailService, UserService userService){
         this.postsDao = postsDao;
