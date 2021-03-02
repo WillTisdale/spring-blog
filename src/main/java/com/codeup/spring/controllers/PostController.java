@@ -98,6 +98,10 @@ public class PostController {
     private String editPost(@ModelAttribute Post post){
         User user = userService.loggedInUser();
         post.setUser(user);
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        String strDate = dateFormat.format(date);
+        post.setDate(strDate);
         postsDao.save(post);
         return "redirect:/posts/" + post.getId();
     }
