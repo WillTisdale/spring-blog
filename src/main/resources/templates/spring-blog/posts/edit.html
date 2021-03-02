@@ -27,6 +27,7 @@
                                 </div>
                           </div>
                             <input type="hidden" name="id" th:field="*{id}" th:value="*{id}">
+                            <input type="hidden" name="id" th:field="*{date}" th:value="*{date}">
                         </div>
                         <div class="card-action">
                           <a th:href="@{/posts/{id}(id=*{id})}">Cancel</a>
