@@ -54,13 +54,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // define pages where you don't have to be logged in
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/", "/sign-up", "/posts", "/login", "/weather-map")
+                    .antMatchers("/", "/sign-up", "/index", "/login", "/weather-map")
                     .permitAll()
 
                 // define pages that require users to be logged in
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/ads/*", "/posts/create", "/posts/show")
+                    .antMatchers("/posts/*")
                     .authenticated();
     }
 

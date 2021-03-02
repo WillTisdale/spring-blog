@@ -39,7 +39,7 @@ public class PostController {
     public String all(Model model, @PageableDefault(value=4) Pageable pageable){
         model.addAttribute("page", postsDao.findAll(pageable));
         model.addAttribute("title", "all posts");
-        return "spring-blog/posts/index";
+        return "spring-blog/index";
     }
 
     @GetMapping("/posts/{id}")
