@@ -46,12 +46,7 @@ public class PostController {
     public String post(Model model, @PathVariable long id){
         Post post = postsDao.getOne(id);
         User user = userService.loggedInUser();
-        boolean isUsers;
-        if(user.getId() == post.getUser().getId()){
-            isUsers = true;
-        } else {
-            isUsers = false;
-        }
+        boolean isUsers = user.getId() == post.getUser().getId();
         model.addAttribute("isUsers", isUsers);
         model.addAttribute("post", post);
         model.addAttribute("title", post.getTitle());
