@@ -5,8 +5,8 @@ $(() => {
         accessToken: mapboxToken,
         container: 'map',
         style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
-        center: [-98.48527, 29.423017], // starting position [lng, lat]
-        zoom: 9
+        center: [-98.5795, 39.8283], // starting position [lng, lat]
+        zoom: 2
     }
     let map = new mapboxgl.Map(mapOptions);
 
@@ -27,14 +27,31 @@ $(() => {
         updateCity(lon, lat)
         updateWeather(lat, lon)
     })
+    var geolocate = new mapboxgl.GeolocateControl({
+        positionOptions: {
+        enableHighAccuracy: true
+        },
+        trackUserLocation: false
+        });
+        // Add the control to the map.
+        map.addControl(geolocate);
+        map.on('load', function() {
+        geolocate.trigger();
+        });
 
-    //Marker
-    let marker = new mapboxgl.Marker({
+        let marker = new mapboxgl.Marker({
         draggable: true
-    })
-        .setLngLat([-98.48527, 29.423017])
-        .addTo(map)
-        .on('dragend', onDragEnd);
+        })
+        geolocate.on("geolocate", function(){
+            setTimeout(function(){
+                marker
+                .setLngLat(map.getCenter())
+                .addTo(map)
+                .on('dragend', onDragEnd);
+                updateCity(map.getCenter().lng, map.getCenter().lat)
+                $('#header').css("display", "revert")
+            }, 2500)
+        })
 
     //Variables for Functions
     let lon;
@@ -83,14 +100,17 @@ $(() => {
         return today
     }
     function forecast() {
+        let center = map.getCenter()
+        let lng = center.lng
+        let lat = center.lat
         $.get("https://api.openweathermap.org/data/2.5/onecall", {
             APPID: OPEN_WEATHER_APPID,
-            lat: 29.423017,
-            lon: -98.48527,
+            lat: lat,
+            lon: lng,
             units: "imperial",
             exclude: "current,minutely,hourly,alerts"
         }).done(function (data) {
-            updateCity(-98.48527, 29.423017)
+            // updateCity(lng, lat)
             renderCards(data)
         });
     }
