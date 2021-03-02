@@ -16,6 +16,7 @@
                         <div class="card-content white-text">
                           <span class="card-title" th:text="${post.getTitle()}"></span>
                           <p th:text="${post.getBody()}"></p>
+                            <p th:text="${post.getDate()}"></p>
                         </div>
                         <div class="card-action">
                           <a th:href="@{/posts/{id}(id=${post.id})}">View Post</a>
