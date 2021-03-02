@@ -6,6 +6,7 @@ import com.codeup.spring.repositories.PostRepository;
 import com.codeup.spring.repositories.UserRepository;
 import com.codeup.spring.services.EmailService;
 import com.codeup.spring.services.UserService;
+import com.codeup.spring.util.Time;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -64,10 +65,8 @@ public class PostController {
     public String createPost(@ModelAttribute Post post){
         User user = userService.loggedInUser();
         post.setUser(user);
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
-        String strDate = dateFormat.format(date);
-        post.setDate(strDate);
+
+        post.setDate(new Date());
 
         Post savedPost = postsDao.save(post);
 
@@ -98,11 +97,16 @@ public class PostController {
     private String editPost(@ModelAttribute Post post){
         User user = userService.loggedInUser();
         post.setUser(user);
-        Date date = Calendar.getInstance().getTime();
-        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
-        String strDate = dateFormat.format(date);
-        post.setDate(strDate);
+        post.setDate(new Date());
         postsDao.save(post);
         return "redirect:/posts/" + post.getId();
+    }
+
+    public static void main(String[] args) {
+        Date d = new Date();
+        System.out.println(d);
+        System.out.println(Time.convertToLocalDateTime(d));
+        System.out.println(Time.convertToLocalDateViaInstant(d));
+        System.out.println(Time.convertToLocalDateViaMilisecond(d));
     }
 }

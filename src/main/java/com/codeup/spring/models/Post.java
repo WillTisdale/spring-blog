@@ -21,7 +21,7 @@ public class Post {
     private String body;
 
     @Column(nullable = false)
-    private String date;
+    private Date date;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -34,7 +34,7 @@ public class Post {
         this.body = body;
     }
 
-    public Post(String title, String body, User user, String date){
+    public Post(String title, String body, User user, Date date){
         this.title = title;
         this.body = body;
         this.user = user;
@@ -54,11 +54,11 @@ public class Post {
         this.user = user;
     }
 
-        public String getDate() {
+        public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
