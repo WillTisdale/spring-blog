@@ -1,8 +1,10 @@
 package com.codeup.spring.models;
 
-import org.springframework.stereotype.Controller;
+
 
 import javax.persistence.*;
+import java.util.Date;
+
 
 @Entity
 @Table(name = "posts")
@@ -18,6 +20,9 @@ public class Post {
     @Column(nullable = false, length = 1000)
     private String body;
 
+    @Column(nullable = false)
+    private String date;
+
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -29,10 +34,11 @@ public class Post {
         this.body = body;
     }
 
-    public Post(String title, String body, User user){
+    public Post(String title, String body, User user, String date){
         this.title = title;
         this.body = body;
         this.user = user;
+        this.date = date;
     }
 
     public Post(long id, String title, String body){
@@ -47,6 +53,15 @@ public class Post {
         this.body = body;
         this.user = user;
     }
+
+        public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
 
     public long getId() {
         return id;

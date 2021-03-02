@@ -18,7 +18,9 @@
                       <p th:text="${post.body}"></p>
                         <br>
                         <hr>
-                        <p th:text="${post.user.email}"></p>
+                        <p>Author:</p>
+                        <p th:text="${post.user.username}"></p>
+                        <p th:text="${post.date}"></p>
                     </div>
                       <div th:switch="${isUsers}">
                         <div th:case="true" class="card-action">

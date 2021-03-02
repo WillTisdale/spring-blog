@@ -13,6 +13,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 
 @Controller
 public class PostController {
@@ -64,13 +69,17 @@ public class PostController {
     public String createPost(@ModelAttribute Post post){
         User user = userService.loggedInUser();
         post.setUser(user);
+        Date date = Calendar.getInstance().getTime();
+        DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy hh:mm");
+        String strDate = dateFormat.format(date);
+        post.setDate(strDate);
 
         Post savedPost = postsDao.save(post);
 
         String subject = "New Post Created Successfully!";
         String body = "Dear " + savedPost.getUser().getUsername() + "," +
-                "\n\nThank you for creating a post. Your post ID is: " +
-                savedPost.getId() + ".";
+                "\n\nThank you for creating a post.\n" +
+                savedPost.getBody();
 
         emailService.prepareAndSend(savedPost, subject, body);
         return "redirect:/posts/" + savedPost.getId();
