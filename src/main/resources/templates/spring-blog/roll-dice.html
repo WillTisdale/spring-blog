@@ -5,10 +5,10 @@
 <body>
 <div th:replace="partials/partials.html :: spring-blog-header"></div>
 <main style="display: flex; flex-direction: column; align-items: center">
-    <div class="container">
+    <div class="container center">
         <h5>guess which number a rolled dice will land on!</h5>
 
-        <div style="display: flex;">
+        <div style="display: flex;justify-content: center">
             <form action="/roll-dice/n" method="get">
                 <input type="hidden" name="n" value="1" />
                 <button class="waves-effect waves-light btn">1</button>
