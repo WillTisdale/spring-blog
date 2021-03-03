@@ -35,7 +35,7 @@
               <a class='dropdown-trigger btn pulse' href='#' data-target='dropdown1'>projects!</a>
               <ul id='dropdown1' class='dropdown-content'>
                 <li><a th:href="@{/spring-blog}"><i class="material-icons">wb_sunny</i>blog</a></li>
-                <li><a th:href="@{/weather-map}"><i class="material-icons">cloud</i>weather</a></li>
+                <li><a th:href="@{/coffee}"><i class="material-icons">free_breakfast</i>coffee</a></li>
                 <li><a th:href="@{/roll-dice}"><i class="material-icons">view_module</i>roll-dice</a></li>
                  <li sec:authorize="isAuthenticated()">
                      <a id="logout" href="#"><i class="material-icons">clear</i>logout</a>
@@ -52,7 +52,7 @@
 <ul class="sidenav right cyan lighten-5" id="mobile-demo">
   <li><a th:href="@{/}"><i class="material-icons">home</i>portfolo</a></li>
   <li><a th:href="@{/spring-blog}"><i class="material-icons">wb_sunny</i>blog</a></li>
-  <li><a th:href="@{/weather-map}"><i class="material-icons">cloud</i>weather</a></li>
+  <li><a th:href="@{/coffee}"><i class="material-icons">free_breakfast</i>coffee</a></li>
   <li><a class="blue-grey-text" href="/roll-dice"><i class="material-icons">view_module</i>roll-dice</a></li>
    <li sec:authorize="isAuthenticated()">
          <a id="logout" href="#"><i class="material-icons">clear</i>logout</a>
