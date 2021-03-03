@@ -23,17 +23,17 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
           <a onclick="M.toast({html: 'welcome to weather map!', classes: 'rounded white brown-text hoverable'})" href="#" class="brand-logo brown-text text-lighten-5">Coffee Project</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
-              <li><a th:href="@{/}"><i class="material-icons brown-text text-lighten-5">home</i></a></li>
+              <li><a th:href="@{/}"><i class="material-icons icon-brown icon-lighten-5">home</i></a></li>
               <a class='dropdown-trigger btn pulse brown lighten-3' href='#' data-target='dropdown1'>projects!</a>
               <ul id='dropdown1' class='dropdown-content brown lighten-4 brown-text'>
-                <li><a th:href="@{/spring-blog}"><i class="material-icons">wb_sunny</i>blog</a></li>
-                <li><a th:href="@{/weather-map}"><i class="material-icons">cloud</i>weather</a></li>
-                <li><a th:href="@{/roll-dice}"><i class="material-icons">view_module</i>roll-dice</a></li>
+                <li><a class="brown-text" th:href="@{/spring-blog}"><i class="material-icons icon-brown">wb_sunny</i>blog</a></li>
+                <li><a class="brown-text" th:href="@{/weather-map}"><i class="material-icons icon-brown">cloud</i>weather</a></li>
+                <li><a class="brown-text" th:href="@{/roll-dice}"><i class="material-icons icon-brown">view_module</i>roll-dice</a></li>
                  <li sec:authorize="isAuthenticated()">
-                     <a id="logout" href="#"><i class="material-icons">clear</i>logout</a>
+                     <a class="brown-text" id="logout" href="#"><i class="material-icons icon-brown">clear</i>logout</a>
                 </li>
                 <li sec:authorize="isAnonymous()">
-                    <a id="login" th:href="@{/login}"><i class="material-icons">portrait</i>login</a>
+                    <a class="brown-text" id="login" th:href="@{/login}"><i class="material-icons icon-brown">portrait</i>login</a>
                 </li>
               </ul>
           </ul>
@@ -42,15 +42,15 @@
 </div>
 
 <ul class="sidenav right brown lighten-4 brown-text" id="mobile-demo">
-  <li><a th:href="@{/}"><i class="material-icons">home</i>portfolo</a></li>
-  <li><a th:href="@{/spring-blog}"><i class="material-icons">wb_sunny</i>blog</a></li>
-  <li><a th:href="@{/weather-map}"><i class="material-icons">cloud</i>weather</a></li>
-  <li><a href="/roll-dice"><i class="material-icons">view_module</i>roll-dice</a></li>
+  <li><a class="brown-text" th:href="@{/}"><i class="material-icons icon-brown">home</i>portfolo</a></li>
+  <li><a class="brown-text" th:href="@{/spring-blog}"><i class="material-icons icon-brown">wb_sunny</i>blog</a></li>
+  <li><a class="brown-text" th:href="@{/weather-map}"><i class="material-icons icon-brown">cloud</i>weather</a></li>
+  <li><a class="brown-text" th:href="@{/roll-dice}"><i class="material-icons icon-brown">view_module</i>roll-dice</a></li>
    <li sec:authorize="isAuthenticated()">
-         <a id="logout" href="#"><i class="material-icons">clear</i>logout</a>
+         <a class="brown-text" id="logout" href="#"><i class="material-icons icon-brown">clear</i>logout</a>
     </li>
     <li sec:authorize="isAnonymous()">
-        <a id="login" th:href="@{/login}"><i class="material-icons">portrait</i>login</a>
+        <a class="brown-text" id="login" th:href="@{/login}"><i class="material-icons icon-brown">portrait</i>login</a>
     </li>
 </ul>
 
