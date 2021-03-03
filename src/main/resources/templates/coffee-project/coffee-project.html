@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+
+<div th:replace="partials/coffee-project-partials.html :: head"></div>
+
+<body>
+
+<div th:replace="partials/coffee-project-partials.html :: header"></div>
+
+
+    <div class="container" id="main-jumbotron">
+        <h1 class="center">Will&Jordy's</h1>
+        <p class="center">Check out our selection of coffees!</p>
+    </div>
+
+    <main>
+        <div class="main-content center">
+            <div class="row">
+                <div class="col l4 content-left">
+                    <div class="row">
+                        <div class="col m6 l12">
+                            <div class="container">
+                            <h3>Pick from our selection!</h3>
+                            <form>
+                                <div class="input-field">
+                                <label for="roast-selection"></label>
+                                    <select id="roast-selection" class="form-control">
+                                        <option id="all">All Roasts</option>
+                                        <option>light</option>
+                                        <option>medium</option>
+                                        <option>dark</option>
+                                    </select>
+                                </div>
+                            </form>
+
+                            <input type="text" id="user_coffee" placeholder="Enter Coffee Name" class = "form-control">
+                            <input type="button" value="Explore!" id="search" class ="btn brown lighten-3 waves-block">
+                            </div>
+                        </div>
+
+                        <div class="col m6 l12">
+                            <div class="container">
+                            <h3>Add your coffee here!</h3>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <form>
+                                            <div class="input-field">
+                                            <label for="roast-creation"></label>
+                                            <select id="roast-creation" placeholder="Roast Type" class="form-control">
+                                                <option selected>--Select Roast Type--</option>
+                                                <option>light</option>
+                                                <option>medium</option>
+                                                <option>dark</option>
+                                            </select>
+                                            <input type='text' id='user_create' placeholder="Enter Coffee Name" class = "form-control">
+                                            <input type="button" class="btn brown lighten-3 waves-block" id="add" value="Add To List">
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <div class="col l8 scrollable">
+                        <div id="coffees" class = 'row'></div>
+                    </div>
+
+            </div>
+        </div>
+    </main>
+
+    <div th:replace="partials/coffee-project-partials.html :: footer"></div>
+    <div th:replace="partials/coffee-project-partials.html :: script"></div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" lang="en">
+
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Coffee Project</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@1&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{css/coffee-project.css}">
+</head>
+
+<body>
+
+<header th:fragment="header">
+<div class="navbar my-navbar">
+    <nav class="brown lighten-2">
+        <div class="nav-wrapper">
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="material-icons">menu</i></a>
+          <a onclick="M.toast({html: 'welcome to weather map!', classes: 'rounded white brown-text hoverable'})" href="#" class="brand-logo brown-text text-lighten-5">Coffee Project</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a th:href="@{/}"><i class="material-icons brown-text text-lighten-5">home</i></a></li>
+              <a class='dropdown-trigger btn pulse brown lighten-3' href='#' data-target='dropdown1'>projects!</a>
+              <ul id='dropdown1' class='dropdown-content brown lighten-4 brown-text'>
+                <li><a th:href="@{/spring-blog}"><i class="material-icons">wb_sunny</i>blog</a></li>
+                <li><a th:href="@{/weather-map}"><i class="material-icons">cloud</i>weather</a></li>
+                <li><a th:href="@{/roll-dice}"><i class="material-icons">view_module</i>roll-dice</a></li>
+                 <li sec:authorize="isAuthenticated()">
+                     <a id="logout" href="#"><i class="material-icons">clear</i>logout</a>
+                </li>
+                <li sec:authorize="isAnonymous()">
+                    <a id="login" th:href="@{/login}"><i class="material-icons">portrait</i>login</a>
+                </li>
+              </ul>
+          </ul>
+        </div>
+    </nav>
+</div>
+
+<ul class="sidenav right brown lighten-4 brown-text" id="mobile-demo">
+  <li><a th:href="@{/}"><i class="material-icons">home</i>portfolo</a></li>
+  <li><a th:href="@{/spring-blog}"><i class="material-icons">wb_sunny</i>blog</a></li>
+  <li><a th:href="@{/weather-map}"><i class="material-icons">cloud</i>weather</a></li>
+  <li><a href="/roll-dice"><i class="material-icons">view_module</i>roll-dice</a></li>
+   <li sec:authorize="isAuthenticated()">
+         <a id="logout" href="#"><i class="material-icons">clear</i>logout</a>
+    </li>
+    <li sec:authorize="isAnonymous()">
+        <a id="login" th:href="@{/login}"><i class="material-icons">portrait</i>login</a>
+    </li>
+</ul>
+
+    <form id="logoutForm" th:action="@{/logout}" th:method="post"></form>
+</header>
+
+
+
+
+
+
+
+
+<div th:fragment="footer" class="page-footer brown lighten-4">
+      <div class="container">
+        <div class="row">
+          <div class="col l6 s12">
+            <h5 class="brown-text" th:text="${footerTitle}"></h5>
+            <p class="brown-text" th:text="${footerAbout}"></p>
+          </div>
+          <div class="col l4 offset-l2 s12">
+            <h5 class="brown-text">Links</h5>
+            <ul>
+              <li class="chip hoverable"><img class="circle" th:src="@{/img/resume.png}"><a class="blue-grey-text" th:href="@{/pdf/resume.pdf}" target="_blank">Resume</a></li>
+              <li class="chip hoverable"><img class="circle" th:src="@{/img/linkedin.png}"><a class="blue-grey-text" href="https://linkedin.com/in/willtisdale" target="_blank">LinkedIn</a></li>
+              <li class="chip hoverable"><img class="circle" th:src="@{/img/github.png}"><a class="blue-grey-text" href="https://github.com/willtisdale" target="_blank">GitHub</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-copyright brown lighten-2">
+        <div class="container">
+        © 2021 Will Tisdale Portfolio
+        </div>
+      </div>
+    </div>
+
+
+    <div th:fragment="script" th:remove="tag">
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.modal').modal();
+                $('.dropdown-trigger').dropdown();
+                $('#logout').click(function(){
+                    $('#logoutForm').submit();
+                })
+                $('.sidenav').sidenav();
+            });
+        </script>
+        <script th:src="@{js/coffee-project.js}"></script>
+    </div>
+
+
+</body>

@@ -41,6 +41,17 @@ public class PortfolioController {
         return "weather-map/weather-map";
     }
 
+    @GetMapping("/coffee")
+    public String coffeeProject(Model model){
+        model.addAttribute("footerTitle", "About Coffee Project");
+        model.addAttribute("footerAbout", "This project uses JavaScript to\n" +
+                "dynamically update the HTML of a\n" +
+                "webpage. Uses the functionality of\n" +
+                "sorting, adding, and removing elements\n" +
+                "from the page.");
+        return "coffee-project/coffee-project";
+    }
+
     @GetMapping("/login")
     public String showLogInForm(){
         return "login";
