@@ -24,7 +24,7 @@
                     </div>
                       <div th:switch="${isUsers}">
                         <div th:case="true" class="card-action">
-                          <a href="/posts">View All</a>
+                          <a th:href="@{/posts}">View All</a>
                           <a class="activator" th:href="@{/posts/edit/{id}(id=${post.id})}">Edit</a>
                           <a class="modal-trigger" href="#modal1">Delete</a>
                         </div>
