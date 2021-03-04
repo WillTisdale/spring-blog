@@ -5,7 +5,9 @@ package com.codeup.spring.models;
 import com.codeup.spring.util.Time;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
+
 
 
 @Entity

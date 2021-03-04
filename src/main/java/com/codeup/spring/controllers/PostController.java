@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
@@ -62,10 +64,39 @@ public class PostController {
     }
 
     @PostMapping("/posts/create")
-    public String createPost(@ModelAttribute Post post){
+    public String createPost(@ModelAttribute @Validated Post post, Errors validation, Model model){
+        for (Post p : postsDao.findAll()){
+            System.out.println(p.getTitle());
+            if(p.getTitle().equalsIgnoreCase(post.getTitle()) && p.getUser().getId() == post.getUser().getId()){
+                validation.rejectValue(
+                        "title",
+                        "post.title",
+                        "you already have a post with the title " + post.getTitle());
+            }
+        }
+        if (post.getTitle().isEmpty()) {
+            validation.rejectValue(
+                    "title",
+                    "post.title",
+                    "Title can not be empty"
+            );
+        }
+        if (post.getBody().isEmpty()){
+            validation.rejectValue(
+                    "body",
+                    "post.body",
+                    "Body can not be empty"
+            );
+        }
+        if(validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("post", post);
+            return "spring-blog/posts/create";
+        }
         User user = userService.loggedInUser();
         post.setUser(user);
         post.setDate(new Date());
+        System.out.println(post.getDate());
 
         Post savedPost = postsDao.save(post);
 
@@ -93,7 +124,37 @@ public class PostController {
     }
 
     @PostMapping(path = "/posts/edit/{id}")
-    private String editPost(@ModelAttribute Post post){
+    private String editPost(@ModelAttribute @Validated Post post, Errors validation, Model model){
+//        for (Post p : postsDao.findAll()){
+//            System.out.println(p.getTitle());
+//            if(p.getTitle().equalsIgnoreCase(post.getTitle()) &&
+//                    p.getUser().getId() == post.getUser().getId()){
+//                validation.rejectValue(
+//                        "title",
+//                        "post.title",
+//                        "you already have a post with the title " + post.getTitle());
+//            }
+//        }
+//        if (post.getTitle().isBlank()) {
+//            validation.rejectValue(
+//                    "title",
+//                    "post.title",
+//                    "Title can not be empty"
+//            );
+//        }
+//        if (post.getBody().isBlank()){
+//            validation.rejectValue(
+//                    "body",
+//                    "post.body",
+//                    "Body can not be empty"
+//            );
+//        }
+//        if(validation.hasErrors()){
+//            model.addAttribute("errors", validation);
+//            model.addAttribute("post", post);
+//            model.addAttribute("title", "edit post");
+//            return "spring-blog/posts/edit";
+//        }
         User user = userService.loggedInUser();
         post.setUser(user);
         post.setDate(new Date());

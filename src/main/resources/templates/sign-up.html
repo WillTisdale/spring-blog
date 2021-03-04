@@ -12,12 +12,18 @@
         <form th:action="@{/sign-up}" method="post" th:object="${user}">
             <label for="username">Username</label>
             <input id="username"type="text" th:field="*{username}">
+            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" />
             <br>
             <label for="email">Email</label>
             <input id="email"type="email" th:field="*{email}">
+            <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" />
             <br>
             <label for="password">Password</label>
             <input id="password" th:field="*{password}" type="password">
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" />
+            <br>
+            <label for="confirm">Confirm Password</label>
+            <input id="confirm" name="confirm" type="password">
             <br>
             <button class="btn waves-effect waves-light" type="submit" name="action">
                 Submit

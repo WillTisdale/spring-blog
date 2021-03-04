@@ -8,9 +8,12 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class PortfolioController {
@@ -64,7 +67,38 @@ public class PortfolioController {
     }
 
     @PostMapping("/sign-up")
-    public String createUser(@ModelAttribute User user){
+    public String createUser(@ModelAttribute @Validated User user, Model model, Errors validation, @RequestParam(name = "confirm") String confirm){
+        System.out.println(confirm);
+        for (User u: usersDao.findAll()){
+            if(u.getUsername().equalsIgnoreCase(user.getUsername())){
+                validation.rejectValue(
+                        "username",
+                        "user.username",
+                        "username already exists"
+                );
+            }
+        }
+        for (User u: usersDao.findAll()){
+            if(u.getEmail().equalsIgnoreCase(user.getEmail())){
+                validation.rejectValue(
+                        "email",
+                        "user.email",
+                        "email has already been registered for this site"
+                );
+            }
+        }
+        if(!user.getPassword().equals(confirm)){
+            validation.rejectValue(
+                    "password",
+                    "user.password",
+                    "passwords do not match"
+            );
+        }
+        if(validation.hasErrors()){
+            model.addAttribute("errors", validation);
+            model.addAttribute("user", user);
+            return "sign-up";
+        }
         String password = user.getPassword();
         String hash = encoder.encode(password);
         user.setPassword(hash);

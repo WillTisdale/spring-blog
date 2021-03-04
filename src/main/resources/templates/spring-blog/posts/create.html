@@ -19,17 +19,20 @@
                                     <div class="input-field white-text col s12">
                                         <textarea class="materialize-textarea white-text" id="title" type="text" th:field="*{title}"></textarea>
                                         <label for="title" class="orange-text text-accent-2">Title</label>
+                                        <p th:if="${#fields.hasErrors('title')}" th:errors="*{title}" />
                                     </div>
                               </div>
                               <div class="row">
                                     <div class="input-field white-text col s12">
                                       <textarea id="body" class="materialize-textarea white-text" th:field="*{body}"></textarea>
                                       <label for="body" class="orange-text text-accent-2">Body</label>
+                                      <p th:if="${#fields.hasErrors('body')}" th:errors="*{body}" />
                                     </div>
                               </div>
                                 <input type="hidden" name="id" th:field="*{id}" th:value="*{id}">
                             </div>
                             <div class="card-action">
+                              <a th:href="@{/posts/{id}(id=*{id})}">Cancel</a>
                               <a href="#!" id="submit">Submit</a>
                             </div>
                           </div>
