@@ -20,7 +20,7 @@
                         <hr>
                         <p>Author:</p>
                         <p th:text="${post.user.username}"></p>
-                        <p th:text="${post.date}"></p>
+                        <p th:text="${post.localTime()}"></p>
                     </div>
                       <div th:switch="${isUsers}">
                         <div th:case="true" class="card-action">
