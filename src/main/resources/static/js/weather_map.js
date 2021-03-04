@@ -31,7 +31,7 @@ $(() => {
         positionOptions: {
         enableHighAccuracy: true
         },
-        trackUserLocation: false
+        trackUserLocation: true
         });
         // Add the control to the map.
         map.addControl(geolocate);
