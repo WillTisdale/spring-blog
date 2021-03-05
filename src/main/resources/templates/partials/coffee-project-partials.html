@@ -58,7 +58,15 @@
 </header>
 
 
-
+<div th:fragment="modal" id="modal2" class="modal">
+        <div class="modal-content">
+          <h4>This is just a demo!</h4>
+            <p>Ordering coffee is not available.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="#!" class="modal-close waves-effect waves-ripple btn brown lighten-3">Close</a>
+        </div>
+    </div>
 
 
 
@@ -77,6 +85,7 @@
               <li class="chip hoverable"><img class="circle" th:src="@{/img/resume.png}"><a class="blue-grey-text" th:href="@{/pdf/resume.pdf}" target="_blank">Resume</a></li>
               <li class="chip hoverable"><img class="circle" th:src="@{/img/linkedin.png}"><a class="blue-grey-text" href="https://linkedin.com/in/willtisdale" target="_blank">LinkedIn</a></li>
               <li class="chip hoverable"><img class="circle" th:src="@{/img/github.png}"><a class="blue-grey-text" href="https://github.com/willtisdale" target="_blank">GitHub</a></li>
+              <li class="chip hoverable"><img class="circle" th:src="@{/img/github.png}"><a class="blue-grey-text" href="https://github.com/jordysolis96" target="_blank">Jordy's GitHub</a></li>
             </ul>
           </div>
         </div>

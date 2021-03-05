@@ -47,9 +47,9 @@ public class PortfolioController {
     @GetMapping("/coffee")
     public String coffeeProject(Model model){
         model.addAttribute("footerTitle", "About Coffee Project");
-        model.addAttribute("footerAbout", "This project uses JavaScript to\n" +
+        model.addAttribute("footerAbout", "This was a paired-programming project with Jordy Muniz. It uses JavaScript to\n" +
                 "dynamically update the HTML of a\n" +
-                "webpage. Uses the functionality of\n" +
+                "webpage. Also, uses the functionality of\n" +
                 "sorting, adding, and removing elements\n" +
                 "from the page.");
         return "coffee-project/coffee-project";

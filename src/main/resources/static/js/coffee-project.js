@@ -9,7 +9,7 @@ function renderCoffee(coffee) {
     html += '<h6 class = "card-title">' + coffee.roast + '</h6>';
     html += '<p>' + coffee.description + '</p>';
     html += '</main><div class="card-action">';
-    html += "<a class='btn brown lighten-3' href='#'>Order Now</a>"
+    html += "<a class='btn brown lighten-3 modal-trigger' href='#modal2'>Order Now</a>"
     html += '</div></div></div></div>';
 
     return html;
