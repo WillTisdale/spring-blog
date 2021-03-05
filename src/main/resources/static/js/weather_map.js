@@ -81,7 +81,7 @@ $(() => {
             units: "imperial",
             exclude: "current,minutely,hourly,alerts"
         }).done(function (data) {
-            console.log(data);
+            // console.log(data);
             renderCards(data)
         });
     }
