@@ -38,4 +38,6 @@ public class HelloController {
         model.addAttribute("cohort", "welcome to " + cohort.toLowerCase() + "!");
         return "spring-blog/join";
     }
+
+
 }
