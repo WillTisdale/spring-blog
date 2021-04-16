@@ -24,8 +24,18 @@ public class BotController {
     }
 
     @GetMapping("/bot")
-    @ResponseBody
     public String botPage(){
+        DiscordApi api = new DiscordApiBuilder().setToken(bot.getToken()).login().join();
+
+        // Add a listener which answers with "Pong!" if someone writes "!ping"
+        api.addMessageCreateListener(event -> {
+            if (event.getMessageContent().equalsIgnoreCase("!ping")) {
+                event.getChannel().sendMessage("Pong!");
+            }
+            if (event.getMessageContent().equalsIgnoreCase("!Artemis")) {
+                event.getChannel().sendMessage("Hello, from Artemis!");
+            }
+        });
         return "There is a Discord Bot here!";
     }
 
