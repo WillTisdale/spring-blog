@@ -6,7 +6,9 @@ import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class BotController {
@@ -17,6 +19,12 @@ public class BotController {
     public BotController(HeroRepository heroesDao, BotProperties bot){
         this.heroesDao = heroesDao;
         this.bot = bot;
+    }
+
+    @GetMapping("/bot")
+    @ResponseBody
+    public String botPage(){
+        return "There is a Discord Bot here!";
     }
 
     @PostMapping("/bot")
