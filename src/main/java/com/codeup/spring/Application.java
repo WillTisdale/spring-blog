@@ -15,8 +15,8 @@ public class Application {
         SpringApplication.run(Application.class, args);
 
         //Discord Bot
-        String token = "your token goes here";
-        DiscordApi api = new DiscordApiBuilder().setToken(token).login().join();
+        BotProperties bot = new BotProperties();
+        DiscordApi api = new DiscordApiBuilder().setToken(bot.getToken()).login().join();
 
         // Add a listener which answers with "Pong!" if someone writes "!ping"
         api.addMessageCreateListener(event -> {
