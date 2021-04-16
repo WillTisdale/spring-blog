@@ -25,10 +25,7 @@ public class BotController {
 
     @GetMapping("/bot")
     @ResponseBody
-    public String botPage(@RequestHeader("X-Signature-Ed25519") String signature,
-                          @RequestHeader("X-Signature-Timestamp") String timestamp){
-        System.out.println(signature);
-        System.out.println(timestamp);
+    public String botPage(){
         return "There is a Discord Bot here!";
     }
 
