@@ -16,6 +16,7 @@ public class BotController {
     private final HeroRepository heroesDao;
     private final BotProperties bot;
 
+
     public BotController(HeroRepository heroesDao, BotProperties bot){
         this.heroesDao = heroesDao;
         this.bot = bot;
@@ -37,7 +38,7 @@ public class BotController {
                 event.getChannel().sendMessage("Pong!");
             }
             if (event.getMessageContent().equalsIgnoreCase("!Artemis")) {
-                event.getChannel().sendMessage();
+                event.getChannel().sendMessage("Hello, from Artemis!");
             }
         });
     }
