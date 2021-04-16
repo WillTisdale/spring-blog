@@ -6,9 +6,10 @@ import org.javacord.api.DiscordApi;
 import org.javacord.api.DiscordApiBuilder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+
+import java.security.SignatureException;
 
 @Controller
 public class BotController {
@@ -24,7 +25,10 @@ public class BotController {
 
     @GetMapping("/bot")
     @ResponseBody
-    public String botPage(){
+    public String botPage(@RequestHeader("X-Signature-Ed25519") String signature,
+                          @RequestHeader("X-Signature-Timestamp") String timestamp){
+        System.out.println(signature);
+        System.out.println(timestamp);
         return "There is a Discord Bot here!";
     }
 

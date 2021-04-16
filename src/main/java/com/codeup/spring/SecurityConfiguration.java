@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.thymeleaf.extras.springsecurity4.dialect.SpringSecurityDialect;
 
+
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
@@ -54,7 +55,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 // define pages where you don't have to be logged in
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/", "/sign-up", "/index", "/login", "/weather-map")
+                    .antMatchers("/", "/sign-up", "/index", "/login", "/weather-map", "/bot")
                     .permitAll()
 
                 // define pages that require users to be logged in
