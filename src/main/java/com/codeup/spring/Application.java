@@ -15,18 +15,21 @@ public class Application {
         SpringApplication.run(Application.class, args);
 
         //Discord Bot
-        BotProperties bot = new BotProperties();
-        DiscordApi api = new DiscordApiBuilder().setToken(bot.getToken()).login().join();
-
-        // Add a listener which answers with "Pong!" if someone writes "!ping"
-        api.addMessageCreateListener(event -> {
-            if (event.getMessageContent().equalsIgnoreCase("!ping")) {
-                event.getChannel().sendMessage("Pong!");
-            }
-        });
-
-        // Print the invite url of your bot
-        System.out.println("You can invite the bot by using the following url: " + api.createBotInvite());
+//        BotProperties bot = new BotProperties();
+//        DiscordApi api = new DiscordApiBuilder().setToken(bot.getToken()).login().join();
+//
+//        // Add a listener which answers with "Pong!" if someone writes "!ping"
+//        api.addMessageCreateListener(event -> {
+//            if (event.getMessageContent().equalsIgnoreCase("!ping")) {
+//                event.getChannel().sendMessage("Pong!");
+//            }
+//            if (event.getMessageContent().equalsIgnoreCase("!Artemis")) {
+//                event.getChannel().sendMessage();
+//            }
+//        });
+//
+//        // Print the invite url of your bot
+//        System.out.println("You can invite the bot by using the following url: " + api.createBotInvite());
     }
 
 }
