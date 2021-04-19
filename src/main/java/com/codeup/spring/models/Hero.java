@@ -1,5 +1,6 @@
 package com.codeup.spring.models;
 
+import com.codeup.spring.dao.DaoFactory;
 import jdk.jfr.Unsigned;
 
 import javax.persistence.Entity;
@@ -60,6 +61,54 @@ public class Hero {
     private String critHitChance;
 
     public Hero(){}
+
+    public Hero(long id, String main_stat, String name, String intelligence, String agility, String strength, String health, String physical_attack, String magic_attack, String armor, String magic_defense, String dodge, String armor_penetration, String magic_penetration, String vampirism, String crit_hit_chance) {
+        this.id = id;
+        this.mainStat = main_stat;
+        this.name = name;
+        this.intelligence = intelligence;
+        this.agility = agility;
+        this.strength = strength;
+        this.health = health;
+        this.physicalAttack = physical_attack;
+        this.magicAttack = magic_attack;
+        this.armor = armor;
+        this.magicDefense = magic_defense;
+        this.dodge = dodge;
+        this.armorPenetration = armor_penetration;
+        this.magicPenetration = magic_penetration;
+        this.vampirism = vampirism;
+        this.critHitChance = crit_hit_chance;
+    }
+
+     public String showHeroInfo(){
+        String info = "Name: " + getName() + "\n" +
+                "Main Stat: " + getMainStat() + "\n" +
+                "Intelligence: " + getIntelligence() + "\n" +
+                "Agility: " + getAgility() + "\n" +
+                "Strength: " + getStrength() + "\n" +
+                "Health: " + getHealth() + "\n" +
+                "Physical Attack: " + getPhysicalAttack() + "\n" +
+                "Magic Attack: " + getMagicAttack() + "\n" +
+                "Armor: " + getArmor() + "\n" +
+                "Magic Defense: " + getMagicDefense() + "\n";
+        if(getDodge() != null){
+            info += "Dodge: " + getDodge() + "\n";
+        }
+        if(getArmorPenetration() != null){
+            info += "Armor Penetration: " + getArmorPenetration() + "\n";
+        }
+        if(getMagicPenetration() != null){
+            info += "Magic Penetration: " + getMagicPenetration() + "\n";
+        }
+        if(getVampirism() != null){
+            info += "Vampirism: " + getVampirism() + "\n";
+        }
+        if(getCritHitChance() != null){
+            info += "Critical Hit: " + getCritHitChance() + "\n";
+        }
+        return info;
+    }
 
     public long getId() {
         return id;
