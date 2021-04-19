@@ -1,5 +1,3 @@
-package com.codeup.spring;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
